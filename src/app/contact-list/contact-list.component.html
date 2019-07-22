@@ -6,7 +6,12 @@
 
 <div *ngIf="contacts">
   <div *ngFor="let contact of contacts">
-    <h3 class="tp-username">{{contact.name}}</h3>
+    <h3
+      class="tp-username"
+      [style.color]="isRender ? colorUsername : ''"
+      [style.line-height.em]="3"
+    >{{contact.name}}
+    </h3>
     <div>
       <img class="tp-avatar" *ngIf="contact.avatar?.url" [src]="contact.avatar?.url" alt="Avatar of {{contact.name}}" height="300px" width="600px">
     </div>
@@ -14,25 +19,29 @@
 </div>
 
 <div>
-  <button (click)="changeTab(1)">Tab 1</button>
-  <button (click)="changeTab(2)">Tab 2</button>
-  <button (click)="changeTab(3)">Tab 3</button>
+  <!-- <button (click)="changeTab(1)" class="btn" [class]="tabIndex == 1 ? 'btn active' : 'btn'">Tab 1</button>
+  <button (click)="changeTab(2)" class="btn" [class]="tabIndex == 2 ? 'btn active' : 'btn'">Tab 2</button>
+  <button (click)="changeTab(3)" class="btn" [class]="tabIndex == 3 ? 'btn active' : 'btn'">Tab 3</button> -->
+
+  <button (click)="changeTab(1)" class="btn" [ngClass]="['btn','btn-default','btn-awesome']">Tab 1</button>
+  <button (click)="changeTab(2)" class="btn" [class.active]="tabIndex == 2 ">Tab 2</button>
+  <button (click)="changeTab(3)" class="btn" [class.active]="tabIndex == 3 ">Tab 3</button>
 </div>
 
 
 <div [ngSwitch]="tabIndex">
   <div *ngSwitchCase="1">
     <div>Tab content 1</div>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe beatae dicta libero reiciendis mollitia laborum delectus vitae provident, excepturi quas deserunt qui culpa eius iste nemo minima neque quam molestias.</p>
   </div>
-  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe beatae dicta libero reiciendis mollitia laborum delectus vitae provident, excepturi quas deserunt qui culpa eius iste nemo minima neque quam molestias.</p>
   <div *ngSwitchCase="2">
     <div>Tab content 2</div>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam voluptate a unde. Nemo incidunt tempore iusto tempora quia nostrum, vero expedita! Itaque cupiditate consequatur tempora ducimus minus asperiores, molestiae deserunt.</p>
   </div>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam voluptate a unde. Nemo incidunt tempore iusto tempora quia nostrum, vero expedita! Itaque cupiditate consequatur tempora ducimus minus asperiores, molestiae deserunt.</p>
   <div *ngSwitchCase="3">
     <div>Tab content 3</div>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam magnam praesentium, odio iste odit provident inventore. Excepturi cum modi soluta aut blanditiis ducimus ipsam cupiditate laborum voluptatum praesentium! Facere, incidunt voluptatum tenetur quam eius ea eaque voluptate architecto deleniti saepe?</p>
   </div>
-  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam magnam praesentium, odio iste odit provident inventore. Excepturi cum modi soluta aut blanditiis ducimus ipsam cupiditate laborum voluptatum praesentium! Facere, incidunt voluptatum tenetur quam eius ea eaque voluptate architecto deleniti saepe?</p>
 
   <!-- <div *ngSwitchDefault>
 

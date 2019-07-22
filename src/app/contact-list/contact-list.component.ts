@@ -9,7 +9,7 @@ import {Component} from '@angular/core';
 
 export class ContactListComponent {
   message: string = 'Xin chao, ContactListComponent';
-  isRender = true;
+  isRender = false;
   tabIndex: number = 1;
   contacts = [
     {
@@ -36,7 +36,8 @@ export class ContactListComponent {
         url : 'https://www.free-largeimages.com/wp-content/uploads/2015/07/Desktop_Wallpaper_01.jpg'
       }
     }
-  ]
+  ];
+  colorUsername:string = "green";
 
   changeTab(tabIndex){
     this.tabIndex = tabIndex;
