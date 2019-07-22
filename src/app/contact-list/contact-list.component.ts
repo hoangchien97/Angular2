@@ -3,7 +3,8 @@ import {Component} from '@angular/core';
 @Component({
   // tslint:disable-next-line: component-selector
   selector: 'tp-contact-list',
-  templateUrl : './contact-list.component.html'
+  templateUrl : './contact-list.component.html',
+  styleUrls : ['./contact-list.component.scss']
 })
 
 export class ContactListComponent {

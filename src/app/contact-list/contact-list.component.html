@@ -6,9 +6,9 @@
 
 <div *ngIf="contacts">
   <div *ngFor="let contact of contacts">
-    <h3>{{contact.name}}</h3>
+    <h3 class="tp-username">{{contact.name}}</h3>
     <div>
-      <img *ngIf="contact.avatar?.url" [src]="contact.avatar?.url" alt="Avatar of {{contact.name}}" height="300px" width="600px">
+      <img class="tp-avatar" *ngIf="contact.avatar?.url" [src]="contact.avatar?.url" alt="Avatar of {{contact.name}}" height="300px" width="600px">
     </div>
   </div>
 </div>
