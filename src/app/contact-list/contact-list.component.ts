@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Input, EventEmitter, Output} from '@angular/core';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -8,9 +8,16 @@ import {Component} from '@angular/core';
 })
 
 export class ContactListComponent {
+
+  @Input() childMessage: string;
+
+  @Output() voteSize = new EventEmitter();
+  counter: number = 0;
+
   message: string = 'Xin chao, ContactListComponent';
   isRender = false;
   tabIndex: number = 1;
+  static clickCounter = 0;
   contacts = [
     {
       id: 1,
@@ -37,9 +44,61 @@ export class ContactListComponent {
       }
     }
   ];
-  colorUsername:string = "green";
+  baseContact = {
+    id: 4,
+    name: 'User No. 4',
+    job: 'Software Developer',
+    avatar: {
+      url: 'https://placeholdit.imgix.net/~text?txtsize=36&bg=e8117f&txtclr=ffffff&txt=150%C3%97150&w=150&h=150'
+    }
+  };
+  serverContacts = [{
+      id: 1,
+      name: 'Tiep Phan',
+      job: 'Web Developer',
+      avatar: {
+        url: 'https://placeholdit.imgix.net/~text?txtsize=36&bg=e8117f&txtclr=ffffff&txt=150%C3%97150&w=150&h=150'
+      }
+    }, {
+      id: 2,
+      name: 'John Doe',
+      job: 'Writer',
+      avatar: {
+        url: 'https://placeholdit.imgix.net/~text?txtsize=36&bg=e8117f&txtclr=ffffff&txt=150%C3%97150&w=150&h=150'
+      }
+    }, {
+      id: 3,
+      name: 'Michael Bay',
+      job: 'Producer, Director',
+      avatar: {
+        url: 'https://placeholdit.imgix.net/~text?txtsize=36&bg=e8117f&txtclr=ffffff&txt=150%C3%97150&w=150&h=150'
+      }
+    }
+  ];
+
+  colorUsername: string = "green";
 
   changeTab(tabIndex){
     this.tabIndex = tabIndex;
+  }
+  getDataFromServer() {
+    return JSON.parse(JSON.stringify(this.serverContacts));
+  }
+
+  getContacts() {
+    if (ContactListComponent.clickCounter % 2 == 0) {
+      this.contacts = this.getDataFromServer().concat(this.baseContact);
+    } else {
+      this.contacts = this.getDataFromServer().concat([]);
+    }
+    ContactListComponent.clickCounter++;
+  }
+  contactTrackByFn(index, item) {
+    return item.id;
+  }
+
+  voted() {
+    this.counter ++;
+    this.voteSize.emit(this.counter);
   }
 }

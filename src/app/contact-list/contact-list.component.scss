@@ -22,3 +22,16 @@ h1{
     color: #fff;
   }
 }
+.tp-block{
+  &--1-4{
+    width: 25%;
+  }
+  &--flex{
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+.tp-special{
+  margin-left: 10px;
+}
