@@ -1,0 +1,54 @@
+Router
+
+ng-router + Tab
+
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+
+khai báo path
+
+const routes: Routes = [
+    { path: '/', component: HomeComponent },
+    { path: '/employees', component: EmployeeComponent },
+];
+
+Trong app.module.ts
+
+import {AppRoutingModule} from './app.router.ts'
+
+@Module({
+	imports : [..., AppRoutingModule]; 
+})
+
+Quy trinh : 
+
+B1 . index.html
+<base href="/">
+B2 . 
+Tao file app.routes.ts
+
+import { RouterModule, Routes } from '@angular/router';
+import cac component cần dùng
+
+định nghĩa 1 biến 
+const routes: Routes = [
+    { path: '', component: HomeComponent },
+    { path: 'employees', component: EmployeeComponent },
+];
+
+@NgModule({
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
+}) 
+
+export class AppRoutingModule {}
+
+B3 . sang app.module imports lại AppRoutingModule
+imports: [ ... , AppRoutingModule]
+
+b4 : Trong app có bnhiu component thì khai báo hết trong declarations trong app.module
+
+b5. vào app.component.html
+syntax : <a [routerLink]="[ '/path', routeParam ]">name</a>
+<a [routerLink]="[ '/' ]">Home</a>
+
